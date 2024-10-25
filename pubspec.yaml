@@ -1,0 +1,69 @@
+name: flutter_app
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.10+1
+  video_player: ^2.2.19
+  universal_io: ^2.0.4
+  camera: ^0.10.5+4
+  fluttertoast: ^8.2.6
+  permission_handler: ^10.2.0  # Add this line
+  universal_html: ^2.0.7
+  flutter_timer_camera:
+    #path: ../ # Adjust this if necessary to point to the local package
+
+    # Add these dependencies for file handling and directory access
+  path_provider: ^2.0.11
+  path: ^1.8.0
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets/images/untitled_11.jpeg
+  - assets/images/lovepik_green_flat_plant_yoga_banner_image_5629888_list_1.png
+  - assets/images/bb_1.png
+  - assets/images/untitled_11.jpeg
+  - assets/images/component_5.png
+  - assets/images/component_4.png
+  - assets/images/component_2.png
+  - assets/images/home_1.jpeg
+  - assets/images/component_1.png
+  - assets/images/component_3.png
+  - assets/videos/goddess.mp4
+  - assets/videos/downdog.mp4
+  - assets/videos/plank.mp4
+  - assets/videos/tree.mp4
+  - assets/videos/warrior.mp4
+  - assets/images/layer_11.png
+  - assets/images/f_489394725_oox_6_jg_48_u_2_k_0_fsk_4_rl_pczqk_u_7_qvu_2_bsu_1.jpeg
+  - assets/images/green_check_1.png
+  - assets/images/international_yoga_day_011.png
+  - assets/images/layer_111.png
+  - assets/images/pose_master_1.png
+  - assets/images/rectangle_1.png
+  - assets/images/shape_4_copy_2.png
+
+
+
+
+
+
+
