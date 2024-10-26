@@ -17,7 +17,8 @@ dependencies:
   universal_io: ^2.0.4
   camera: ^0.10.5+4
   fluttertoast: ^8.2.6
-  permission_handler: ^10.2.0  # Add this line
+  permission_handler: ^11.2.0  # Check for the latest version on pub.dev
+  image: ^3.0.1
   universal_html: ^2.0.7
   flutter_timer_camera:
     #path: ../ # Adjust this if necessary to point to the local package
@@ -25,6 +26,8 @@ dependencies:
     # Add these dependencies for file handling and directory access
   path_provider: ^2.0.11
   path: ^1.8.0
+  tflite: ^1.0.2
+  tflite_flutter: ^0.9.5
 
 
 

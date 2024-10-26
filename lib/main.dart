@@ -16,6 +16,8 @@ import 'pages/description_page_3.dart';
 import 'pages/description_page_4.dart';
 import 'pages/description_page_5.dart';
 import 'package:camera/camera.dart'; // Add camera package import
+import 'pages/preprocess_and_model_load.dart';
+
 
 void main() => runApp(const MyApp());
 
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       title: 'Flutter App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/welcome', // Change this to the route you want to start with
+      initialRoute: '/home', // Change this to the route you want to start with
 
       routes: {
         '/welcome': (context) => WelcomePage(),
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
         '/guidline3': (context) => ViewquidanceAndOpenCamersSelectionPage3(),
         '/guidline4': (context) => ViewquidanceAndOpenCamersSelectionPage4(),
         '/guidline5': (context) => ViewquidanceAndOpenCamersSelectionPage5(),
+
+
 
         // Fixed the route path
       },

@@ -88,6 +88,8 @@ class ViewquidanceAndOpenCamersSelectionPage2 extends StatelessWidget {
                                 fontSize: 14,
                                 height: 1.5,
                                 color: const Color(0xFF245204),
+                                decoration: TextDecoration.none, // Add this line
+
                               ),
                             ),
                           ),
@@ -116,6 +118,8 @@ class ViewquidanceAndOpenCamersSelectionPage2 extends StatelessWidget {
                               fontSize: 27,
                               height: 1.5,
                               color: const Color(0xFFFFFFFF),
+                              decoration: TextDecoration.none, // Add this line
+
                             ),
                           ),
                         ),
@@ -154,6 +158,8 @@ class ViewquidanceAndOpenCamersSelectionPage2 extends StatelessWidget {
                                 fontSize: 27,
                                 height: 1.5,
                                 color: const Color(0xFFFFFFFF),
+                                decoration: TextDecoration.none, // Add this line
+
                               ),
                             ),
                           ),
@@ -191,6 +197,8 @@ class ViewquidanceAndOpenCamersSelectionPage2 extends StatelessWidget {
                                 fontSize: 25,
                                 height: 1.5,
                                 color: const Color(0xFFFFFFFF),
+                                decoration: TextDecoration.none, // Add this line
+
                               ),
                             ),
                           ),

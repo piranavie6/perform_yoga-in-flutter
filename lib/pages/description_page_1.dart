@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:video_player/video_player.dart';
+import 'camera_capture.dart';
+
 
 class DescriptionPage1 extends StatefulWidget {
   const DescriptionPage1({super.key});
@@ -144,35 +146,45 @@ class _DescriptionPage1State extends State<DescriptionPage1> {
 
 
 
-  Container _buildNextButton() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 1),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color(0xFFEEEEEE),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x0D000000),
-            offset: Offset(0, 1),
-            blurRadius: 1,
+  GestureDetector _buildNextButton() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => CameraScreen(), // Replace with your actual camera page widget
           ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 0.9),
-        child: Text(
-          'Next',
-          style: GoogleFonts.getFont(
-            'Inter',
-            fontWeight: FontWeight.w500,
-            fontSize: 25,
-            height: 1.5,
-            color: const Color(0xFF000000),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 1),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xFFEEEEEE),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x0D000000),
+              offset: Offset(0, 1),
+              blurRadius: 1,
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 0.9),
+          child: Text(
+            'Next',
+            style: GoogleFonts.getFont(
+              'Inter',
+              fontWeight: FontWeight.w500,
+              fontSize: 25,
+              height: 1.5,
+              color: const Color(0xFF000000),
+            ),
           ),
         ),
       ),
     );
   }
+
 
   Positioned _buildPrevButton() {
     return Positioned(
