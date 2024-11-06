@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_app/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'home_page.dart';
+import 'package:flutter_app/register/login.dart';
+import 'alert_page_incorrect.dart';
 
 class AlertPage1Correct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return 
+    return Scaffold(
+    body:
     Container(
       decoration: BoxDecoration(
         color: Color(0xFFFFFFFF),
@@ -18,79 +21,9 @@ class AlertPage1Correct extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+
             Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 26),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFFFFFFFF),
-                ),
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(33.5, 17.2, 14.7, 15.3),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0.4),
-                        width: 28.4,
-                        height: 11.1,
-                        child: SizedBox(
-                          width: 28.4,
-                          height: 11.1,
-                          child: SvgPicture.asset(
-                            'assets/vectors/image_9_x2.svg',
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0.2, 0, 0),
-                        child: SizedBox(
-                          width: 66.7,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.fromLTRB(0, 0.3, 5, 0.3),
-                                child: SizedBox(
-                                  width: 17,
-                                  height: 10.7,
-                                  child: SvgPicture.asset(
-                                    'assets/vectors/mobile_signal_2_x2.svg',
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.fromLTRB(0, 0, 5, 0.4),
-                                child: SizedBox(
-                                  width: 15.3,
-                                  height: 11,
-                                  child: SvgPicture.asset(
-                                    'assets/vectors/wifi_8_x2.svg',
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                child: SizedBox(
-                                  width: 24.3,
-                                  height: 11.3,
-                                  child: SvgPicture.asset(
-                                    'assets/vectors/battery_7_x2.svg',
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(5, 0, 0, 43),
+              margin: EdgeInsets.fromLTRB(5, 20, 20, 43),
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
@@ -117,13 +50,13 @@ class AlertPage1Correct extends StatelessWidget {
                   height: 1.5,
                   color: Color(0xFF8F00E7),
                 ),
+
               ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(33.2, 0, 26.2, 46),
+              margin:EdgeInsets.fromLTRB(33.2, 20, 26.2, 46),
               child: Text(
-                'You achieved the yoga pose
-            perfectly.',
+                'You achieved the yoga pose perfectly.',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.getFont(
                   'Itim',
@@ -132,115 +65,142 @@ class AlertPage1Correct extends StatelessWidget {
                   height: 1,
                   color: Color(0xE5817E7E),
                 ),
+                overflow: TextOverflow.visible, // Handle any overflow to avoid yellow underline
+
               ),
             ),
-            Container(
-              margin: EdgeInsets.fromLTRB(7, 0, 0, 26),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Color(0xFF09E360),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x0D000000),
-                    offset: Offset(0, 1),
-                    blurRadius: 1,
-                  ),
-                ],
+
+      GestureDetector(
+        onTap: () {
+          // Navigate to the home page
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => HomePage()), // Replace `HomePage()` with your actual home page widget
+                (Route<dynamic> route) => false,
+          );
+        },
+        child: Container(
+          margin: EdgeInsets.fromLTRB(7, 0, 0, 26),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: Color(0xFF09E360),
+            boxShadow: [
+              BoxShadow(
+                color: Color(0x0D000000),
+                offset: Offset(0, 1),
+                blurRadius: 1,
               ),
-              child: Container(
-                width: 284,
-                padding: EdgeInsets.fromLTRB(0, 12.5, 0.9, 12.5),
-                child: Text(
-                  'Next Yoga',
-                  style: GoogleFonts.getFont(
-                    'Inter',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                    height: 1.5,
-                    color: Color(0xFFFFFFFF),
-                  ),
+            ],
+          ),
+          child: Container(
+            width: 284,
+            alignment: Alignment.center, // Center the text inside the container
+
+            padding: EdgeInsets.fromLTRB(0, 12.5, 0.9, 12.5),
+            child: Text(
+              'Next Yoga',
+              style: GoogleFonts.getFont(
+                'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 24,
+                height: 1.5,
+                color: Color(0xFFFFFFFF),
+              ),
+            ),
+          ),
+        ),
+      ),
+
+        GestureDetector(
+          onTap: () {
+            // Clear user session data here
+            // Navigate to the login page and remove all previous routes from the stack
+
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => LogInPage()), // Replace `LoginPage()` with your login page widget
+                  (Route<dynamic> route) => false,
+            );
+          },
+          child: Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 0, 20),
+            decoration:   BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Color(0xFFD23434),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x0D000000),
+                  offset: Offset(0, 1),
+                  blurRadius: 1,
+                ),
+              ],
+            ),
+            child: Container(
+              width: 281,
+              color: Color(0x0504AA),
+              alignment: Alignment.center, // Center the text inside the container
+
+              padding: EdgeInsets.fromLTRB(0, 14, 0.5, 14),
+              child: Text(
+                'View Profile',
+                style: GoogleFonts.getFont(
+                  'Inter',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 24,
+                  height: 1.5,
+                  color: Color(0xFFFFFFFF),
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.fromLTRB(10, 0, 0, 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Color(0xFFD23434),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x0D000000),
-                    offset: Offset(0, 1),
-                    blurRadius: 1,
-                  ),
-                ],
-              ),
+          ),
+        ),
+
+            GestureDetector(
+              onTap: () {
+                // Clear user session data here
+                // Navigate to the login page and remove all previous routes from the stack
+
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => LogInPage()), // Replace `LoginPage()` with your login page widget
+                      (Route<dynamic> route) => false,
+                );
+              },
               child: Container(
-                width: 281,
-                padding: EdgeInsets.fromLTRB(0, 14, 0.5, 14),
-                child: Text(
-                  'Log out',
-                  style: GoogleFonts.getFont(
-                    'Inter',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 17,
-                    height: 1.5,
-                    color: Color(0xFFFFFFFF),
-                  ),
+                margin: EdgeInsets.fromLTRB(10, 0, 0, 20),
+                decoration:   BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Color(0xFFD23434),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x0D000000),
+                      offset: Offset(0, 1),
+                      blurRadius: 1,
+                    ),
+                  ],
                 ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(13, 0, 0, 0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Color(0xFF8F00E7),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x0D000000),
-                    offset: Offset(0, 1),
-                    blurRadius: 1,
-                  ),
-                ],
-              ),
-              child: SizedBox(
-                width: 284,
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 4, 11, 4),
-                        width: 18,
-                        height: 18,
-                        child: SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: SvgPicture.asset(
-                            'assets/vectors/group_3_x2.svg',
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Try again',
-                        style: GoogleFonts.getFont(
-                          'Inter',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 17,
-                          height: 1.5,
-                          color: Color(0xFFFFFFFF),
-                        ),
-                      ),
-                    ],
+                  width: 281,
+                  color: Color(0x0504AA),
+                  alignment: Alignment.center, // Center the text inside the container
+
+                  padding: EdgeInsets.fromLTRB(0, 14, 0.5, 14),
+                  child: Text(
+                    'Log out',
+                    style: GoogleFonts.getFont(
+                      'Inter',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 24,
+                      height: 1.5,
+                      color: Color(0xFFFFFFFF),
+                    ),
                   ),
                 ),
               ),
             ),
+
+
           ],
         ),
       ),
+    )
     );
   }
 }

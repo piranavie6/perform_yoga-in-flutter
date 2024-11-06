@@ -5,29 +5,43 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.3 <4.0.0'
+#  sdk: '>=3.3.3 <4.0.0'
+#   sdk: '>=2.19.0 <4.0.0'#asnaff
+
+  sdk: '>=3.5.0 <4.0.0'
+#amigos
 
 dependencies:
   flutter:
     sdk: flutter
+#  tflite: ^1.1.2 #imp but cmt now
+#  tflite_flutter: ^0.9.0 #asnaf no need
+#  tensorflow_lite_flutter: ^2.0.1  # Ensure it's the latest compatible version #asnaf no need
+  camera: ^0.10.6
   cupertino_icons: ^1.0.6
   google_fonts: ^6.2.1
   flutter_svg: ^2.0.10+1
   video_player: ^2.2.19
   universal_io: ^2.0.4
-  camera: ^0.10.5+4
-  fluttertoast: ^8.2.6
+#  camera: ^0.10.5+4
+  fluttertoast: ^8.2.8
   permission_handler: ^11.2.0  # Check for the latest version on pub.dev
   image: ^3.0.1
   universal_html: ^2.0.7
+#  tflite: ^1.1.2min
+  flutter_spinkit: ^5.2.0 #amigos
+  flutter_tflite: ^1.0.1 #amigos
+  tflite_flutter: ^0.11.0
+#  tflite_flutter: ^0.9.0
+
+#  tflite_flutter: ^0.9.5 # Ensure you're using a valid version
+
   flutter_timer_camera:
     #path: ../ # Adjust this if necessary to point to the local package
 
     # Add these dependencies for file handling and directory access
   path_provider: ^2.0.11
   path: ^1.8.0
-  tflite: ^1.0.2
-  tflite_flutter: ^0.9.5
 
 
 
@@ -63,6 +77,11 @@ flutter:
   - assets/images/pose_master_1.png
   - assets/images/rectangle_1.png
   - assets/images/shape_4_copy_2.png
+  - assets/classification_implementation2.tflite
+  - assets/verification.tflite
+  - assets/yoga_pose_model.tflite
+  - assets/labels.txt
+  - assets/images/rectangle_18.jpeg
 
 
 

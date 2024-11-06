@@ -51,10 +51,12 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
 
+  RegisterPage({super.key});
+
   Future<void> _register(String email, String password, BuildContext context) async {
     if (email.isEmpty || password.isEmpty) {
       _registerScaffoldMessengerKey.currentState?.showSnackBar(
-        SnackBar(content: Text('Please fill in all fields')),
+        const SnackBar(content: Text('Please fill in all fields')),
       );
       return;
     }
@@ -62,7 +64,7 @@ class RegisterPage extends StatelessWidget {
     // Check if the email is valid
     if (!isValidEmail(email)) {
       _registerScaffoldMessengerKey.currentState?.showSnackBar(
-        SnackBar(content: Text('Invalid email address. Please use a valid email (e.g., example@gmail.com or example@yahoo.com).')),
+        const SnackBar(content: Text('Invalid email address. Please use a valid email (e.g., example@gmail.com or example@yahoo.com).')),
       );
       return;
     }
@@ -78,7 +80,7 @@ class RegisterPage extends StatelessWidget {
 
     if (password != _confirmPasswordController.text) {
       _registerScaffoldMessengerKey.currentState?.showSnackBar(
-        SnackBar(content: Text('Passwords do not match')),
+        const SnackBar(content: Text('Passwords do not match')),
       );
       return;
     }
@@ -99,16 +101,16 @@ class RegisterPage extends StatelessWidget {
         if (responseData['status'] == 'success') {
           // Show success message
           _registerScaffoldMessengerKey.currentState?.showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('Registration successful!'),
               backgroundColor: Colors.green,
             ),
           );
           // Wait for a moment before navigating to login page
-          await Future.delayed(Duration(seconds: 2));
+          await Future.delayed(const Duration(seconds: 2));
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => LogInPage()),
+            MaterialPageRoute(builder: (context) => const LogInPage()),
           );
         } else {
           // Show error message from server
@@ -119,14 +121,14 @@ class RegisterPage extends StatelessWidget {
       } else {
         // Show error message for non-200 status code
         _registerScaffoldMessengerKey.currentState?.showSnackBar(
-          SnackBar(content: Text('Failed to register. Please try again later.')),
+          const SnackBar(content: Text('Failed to register. Please try again later.')),
         );
       }
     } catch (e) {
       // Handle any exceptions that might occur during HTTP request
       print('Error during HTTP request: $e');
       _registerScaffoldMessengerKey.currentState?.showSnackBar(
-        SnackBar(content: Text('Failed to register. Please check your internet connection.')),
+        const SnackBar(content: Text('Failed to register. Please check your internet connection.')),
       );
     }
   }
@@ -139,8 +141,8 @@ class RegisterPage extends StatelessWidget {
       home: Scaffold(
         body: Container(
           width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.fromLTRB(0, 30 ,0, 0),
+          decoration: const BoxDecoration(
             color: Color(0xFFFFFFFF),
           ),
           child: SingleChildScrollView(
@@ -154,9 +156,9 @@ class RegisterPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 1),
+                        margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(
@@ -164,14 +166,14 @@ class RegisterPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          child: Container(
+                          child: const SizedBox(
                             width: 378,
                             height: 226,
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0.6, 0, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(0.6, 20, 0, 0),
                         child: Opacity(
                           opacity: 0.3,
                           child: Text(
@@ -180,28 +182,28 @@ class RegisterPage extends StatelessWidget {
                               'Inter',
                               fontWeight: FontWeight.w600,
                               fontSize: 28,
-                              color: Color(0xFF000000),
+                              color: const Color(0xFF000000),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(10.7, 0, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(10.7, 0, 0, 0),
                         child: Text(
                           'Register',
                           style: GoogleFonts.getFont(
                             'Lexend',
                             fontWeight: FontWeight.w600,
                             fontSize: 20,
-                            color: Color(0xFF085364),
+                            color: const Color(0xFF085364),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(26, 0, 22, 18),
-                        padding: EdgeInsets.fromLTRB(11.5, 11.5, 11.5, 11.5),
+                        margin: const EdgeInsets.fromLTRB(26, 0, 22, 18),
+                        padding: const EdgeInsets.fromLTRB(11.5, 11.5, 11.5, 11.5),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xE5C0C0C0)),
+                          border: Border.all(color: const Color(0xE5C0C0C0)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: TextField(
@@ -214,16 +216,16 @@ class RegisterPage extends StatelessWidget {
                               'Lexend',
                               fontWeight: FontWeight.w300,
                               fontSize: 14,
-                              color: Color(0xFF333333),
+                              color: const Color(0xFF333333),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(23, 0, 25, 18.2),
-                        padding: EdgeInsets.fromLTRB(11, 11, 13, 11.8),
+                        margin: const EdgeInsets.fromLTRB(23, 0, 25, 18.2),
+                        padding: const EdgeInsets.fromLTRB(11, 11, 13, 11.8),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xE5C0C0C0)),
+                          border: Border.all(color: const Color(0xE5C0C0C0)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: TextField(
@@ -236,16 +238,16 @@ class RegisterPage extends StatelessWidget {
                               'Lexend',
                               fontWeight: FontWeight.w300,
                               fontSize: 14,
-                              color: Color(0xFF333333),
+                              color: const Color(0xFF333333),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(23, 0, 25, 18.2),
-                        padding: EdgeInsets.fromLTRB(11, 11, 13, 11.8),
+                        margin: const EdgeInsets.fromLTRB(23, 0, 25, 18.2),
+                        padding: const EdgeInsets.fromLTRB(11, 11, 13, 11.8),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xE5C0C0C0)),
+                          border: Border.all(color: const Color(0xE5C0C0C0)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: TextField(
@@ -258,17 +260,17 @@ class RegisterPage extends StatelessWidget {
                               'Lexend',
                               fontWeight: FontWeight.w300,
                               fontSize: 14,
-                              color: Color(0xFF333333),
+                              color: const Color(0xFF333333),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(4, 0, 0, 14),
+                        margin: const EdgeInsets.fromLTRB(4, 0, 0, 14),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: Color(0xFF23B94D),
-                          boxShadow: [
+                          color: const Color(0xFF23B94D),
+                          boxShadow: const [
                             BoxShadow(
                               color: Color(0x0D000000),
                               offset: Offset(0, 1),
@@ -286,14 +288,14 @@ class RegisterPage extends StatelessWidget {
                               _register(email, password, context);
                             } else {
                               _registerScaffoldMessengerKey.currentState?.showSnackBar(
-                                SnackBar(content: Text('Passwords do not match')),
+                                const SnackBar(content: Text('Passwords do not match')),
                               );
                             }
                           },
                           child: Container(
                             alignment: Alignment.center,
                             width: 213,
-                            padding: EdgeInsets.fromLTRB(0, 6.5, 0.3, 6.5),
+                            padding: const EdgeInsets.fromLTRB(0, 6.5, 0.3, 6.5),
                             child: Text(
                               'Register',
                               style: GoogleFonts.getFont(
@@ -301,14 +303,14 @@ class RegisterPage extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 19,
                                 height: 1.5,
-                                color: Color(0xFFFFFFFF),
+                                color: const Color(0xFFFFFFFF),
                               ),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(24, 0, 24, 0),
+                        margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
                         child: Align(
                           alignment: Alignment.center,
                           child: Container(
@@ -319,7 +321,7 @@ class RegisterPage extends StatelessWidget {
                                   'Lexend',
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                 ),
                                 children: [
                                   TextSpan(
@@ -329,13 +331,13 @@ class RegisterPage extends StatelessWidget {
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       height: 1.3,
-                                      color: Color(0xFF1886B5),
+                                      color: const Color(0xFF1886B5),
                                     ),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
                                         Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => LogInPage()),
+                                          MaterialPageRoute(builder: (context) => const LogInPage()),
                                         );
                                       },
                                   ),

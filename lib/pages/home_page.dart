@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            /*Container(
               decoration: const BoxDecoration(
                 color: Color(0xFFFFFFFF),
               ),
@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+            ),*/
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
@@ -125,35 +125,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            child: Container(
-                              padding: const EdgeInsets.fromLTRB(5, 0, 20, 0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.fromLTRB(0, 13, 5.5, 13),
-                                    decoration: const BoxDecoration(
-                                      color: Color(0xFF000000),
-                                    ),
-                                    child: const SizedBox(
-                                      width: 9,
-                                      height: 1,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Prev',
-                                    style: GoogleFonts.getFont(
-                                      'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18,
-                                      height: 1.5,
-                                      color: const Color(0xFF2E0349),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+
                           ),
                           Container(
                             margin: const EdgeInsets.fromLTRB(0, 5, 0, 6),
@@ -290,7 +262,7 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage1()),
+                        MaterialPageRoute(builder: (context) => const ViewquidanceAndOpenCamersSelectionPage1()),
                       );
                     },
                     child: Container(
@@ -311,7 +283,7 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage2()),
+                        MaterialPageRoute(builder: (context) => const ViewquidanceAndOpenCamersSelectionPage2()),
                       );
                     },
                     child: Container(
@@ -332,7 +304,7 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage3()),
+                        MaterialPageRoute(builder: (context) => const ViewquidanceAndOpenCamersSelectionPage3()),
                       );
                     },
                     child: Container(
@@ -353,7 +325,7 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage4()),
+                        MaterialPageRoute(builder: (context) => const ViewquidanceAndOpenCamersSelectionPage4()),
                       );
                     },
                     child: Container(
@@ -374,7 +346,7 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage5()),
+                        MaterialPageRoute(builder: (context) => const ViewquidanceAndOpenCamersSelectionPage5()),
                       );
                     },
                     child: Container(

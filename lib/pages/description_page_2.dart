@@ -159,7 +159,7 @@ class _DescriptionPage1State extends State<DescriptionPage2> {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => CameraScreen(), // Replace with your actual camera page widget
+            builder: (context) => const CameraScreen(), // Replace with your actual camera page widget
           ),
         );
       },
@@ -281,7 +281,7 @@ class _DescriptionPage1State extends State<DescriptionPage2> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          /*children: [
             SvgPicture.asset(
               'assets/vectors/image_9_x2.svg',
               width: 28.4,
@@ -308,7 +308,7 @@ class _DescriptionPage1State extends State<DescriptionPage2> {
                 ),
               ],
             ),
-          ],
+          ],*/
         ),
       ),
     );

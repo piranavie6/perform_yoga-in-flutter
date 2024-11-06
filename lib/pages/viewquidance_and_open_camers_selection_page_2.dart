@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'camera_capture.dart';
@@ -36,7 +35,7 @@ class ViewquidanceAndOpenCamersSelectionPage2 extends StatelessWidget {
 
                       Container(
                         margin: const EdgeInsets.fromLTRB(0, 0.2, 0, 0),
-                        child: SizedBox(
+                        child: const SizedBox(
                           width: 66.7,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -101,7 +100,7 @@ class ViewquidanceAndOpenCamersSelectionPage2 extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => CameraScreen(),
+                                builder: (context) => const CameraScreen(),
                               ),
                             );
                           },
@@ -129,7 +128,7 @@ class ViewquidanceAndOpenCamersSelectionPage2 extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DescriptionPage2(),
+                              builder: (context) => const DescriptionPage2(),
                             ),
                           );
                         },
@@ -169,7 +168,7 @@ class ViewquidanceAndOpenCamersSelectionPage2 extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
+                            MaterialPageRoute(builder: (context) => const HomePage()),
                           );
                         },
                         child: Container(

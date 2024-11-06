@@ -1,3 +1,4 @@
+/*
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -24,13 +25,18 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.flutter_app"
-    compileSdk flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    //compileSdk flutter.compileSdkVersion
+    //ndkVersion flutter.ndkVersion
+    compileSdk 33 // Replace with your desired compile SDK version
+    ndkVersion "21.3.6528147" // or specify your NDK version if needed
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
 
     kotlinOptions {
         jvmTarget = '1.8'
@@ -40,7 +46,7 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    defaultConfig {
+    /*defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.flutter_app"
         // You can update the following values to match your application needs.
@@ -49,6 +55,15 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
+    }/////adddherrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+    defaultConfig {
+        applicationId "com.example.flutter_app" // Update to your unique app ID
+        minSdkVersion 21 // Replace with your min SDK version
+        targetSdkVersion 33 // Replace with your target SDK version
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -64,4 +79,80 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    classpath 'com.android.tools.build:gradle:7.6.3' // or the latest stable version
+
+}*/
+
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+android {
+    namespace "com.example.flutter_app"
+//    compileSdk 33 // Ensure this is compatible with your Flutter setup
+    ndkVersion "21.3.6528147" // Update to match your project’s NDK requirements, if any
+    compileSdkVersion 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        applicationId "com.example.flutter_app" // Update to your unique app ID if needed
+        minSdkVersion flutter.minSdkVersion // Adjust to your required min SDK version
+//        targetSdkVersion 29 // Adjust to your required target SDK version
+        minSdkVersion 21
+        targetSdkVersion 34
+
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug // Configure a proper signing config for release builds
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation 'org.tensorflow:tensorflow-lite:2.9.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.3.1'
+}
+
+

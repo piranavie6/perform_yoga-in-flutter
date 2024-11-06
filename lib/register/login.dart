@@ -13,6 +13,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 
 class LogInPage extends StatefulWidget {
+  const LogInPage({super.key});
+
   @override
   _LogInPageState createState() => _LogInPageState();
 }
@@ -51,7 +53,7 @@ class _LogInPageState extends State<LogInPage> {
         );
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       } else {
         Fluttertoast.showToast(
@@ -66,11 +68,12 @@ class _LogInPageState extends State<LogInPage> {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
+          body: SingleChildScrollView(
+          child:Container(
+            decoration: const BoxDecoration(
               color: Color(0xFFFFFFFF),
             ),
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 46),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: SingleChildScrollView(
               child: Stack(
                 clipBehavior: Clip.none,
@@ -82,8 +85,8 @@ class _LogInPageState extends State<LogInPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 1),
-                          decoration: BoxDecoration(
+                          margin: const EdgeInsets.fromLTRB(5, 50, 20, 5),
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(
@@ -91,13 +94,13 @@ class _LogInPageState extends State<LogInPage> {
                               ),
                             ),
                           ),
-                          child: Container(
+                          child: const SizedBox(
                             width: 378,
                             height: 226,
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0.4, 3),
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0.4, 3),
                           child: Opacity(
                             opacity: 0.3,
                             child: Text(
@@ -106,29 +109,29 @@ class _LogInPageState extends State<LogInPage> {
                                 'Inter',
                                 fontWeight: FontWeight.w600,
                                 fontSize: 28,
-                                color: Color(0xFF000000),
+                                color: const Color(0xFF000000),
                               ),
                             ),
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 12.7, 25),
+                          margin: const EdgeInsets.fromLTRB(0, 0, 12.7, 25),
                           child: Text(
                             'Log in',
                             style: GoogleFonts.getFont(
                               'Lexend',
                               fontWeight: FontWeight.w600,
                               fontSize: 28,
-                              color: Color(0xFF085364),
+                              color: const Color(0xFF085364),
                             ),
                           ),
                         ),
                         // Email TextField with Controller
                         Container(
-                          margin: EdgeInsets.fromLTRB(26, 0, 22, 18),
-                          padding: EdgeInsets.all(11.5),
+                          margin: const EdgeInsets.fromLTRB(26, 0, 22, 18),
+                          padding: const EdgeInsets.all(11.5),
                           decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xE5C0C0C0)),
+                            border: Border.all(color: const Color(0xE5C0C0C0)),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
@@ -140,17 +143,17 @@ class _LogInPageState extends State<LogInPage> {
                                 'Lexend',
                                 fontWeight: FontWeight.w300,
                                 fontSize: 14,
-                                color: Color(0xFF333333),
+                                color: const Color(0xFF333333),
                               ),
                             ),
                           ),
                         ),
                         // Password TextField with Controller
                         Container(
-                          margin: EdgeInsets.fromLTRB(23, 0, 25, 18.2),
-                          padding: EdgeInsets.fromLTRB(11, 11, 13, 11.8),
+                          margin: const EdgeInsets.fromLTRB(23, 0, 25, 18.2),
+                          padding: const EdgeInsets.fromLTRB(11, 11, 13, 11.8),
                           decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xE5C0C0C0)),
+                            border: Border.all(color: const Color(0xE5C0C0C0)),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: TextField(
@@ -163,13 +166,13 @@ class _LogInPageState extends State<LogInPage> {
                                 'Lexend',
                                 fontWeight: FontWeight.w300,
                                 fontSize: 14,
-                                color: Color(0xFF333333),
+                                color: const Color(0xFF333333),
                               ),
                             ),
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(25, 0, 25, 20),
+                          margin: const EdgeInsets.fromLTRB(25, 0, 25, 20),
                           child: Align(
                             alignment: Alignment.topRight,
                             child: GestureDetector(
@@ -178,7 +181,7 @@ class _LogInPageState extends State<LogInPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) =>
-                                      ResetPasswordPage()),
+                                      const ResetPasswordPage()),
                                 );
                               },
                               child: Text(
@@ -187,7 +190,7 @@ class _LogInPageState extends State<LogInPage> {
                                   'Lexend',
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
-                                  color: Color(0xFFD60E0E),
+                                  color: const Color(0xFFD60E0E),
                                 ),
                               ),
                             ),
@@ -195,11 +198,11 @@ class _LogInPageState extends State<LogInPage> {
                         ),
 // Login Button
                         Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 14),
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 14),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: Color(0xFF23B94D),
-                            boxShadow: [
+                            color: const Color(0xFF23B94D),
+                            boxShadow: const [
                               BoxShadow(
                                 color: Color(0x0D000000),
                                 offset: Offset(0, 1),
@@ -216,7 +219,7 @@ class _LogInPageState extends State<LogInPage> {
                             child: Container(
                               alignment: Alignment.center,
                               width: 213,
-                              padding: EdgeInsets.fromLTRB(0, 6.5, 0.3, 6.5),
+                              padding: const EdgeInsets.fromLTRB(0, 6.5, 0.3, 6.5),
                               child: Text(
                                 'Next',
                                 textAlign: TextAlign.center,
@@ -225,7 +228,7 @@ class _LogInPageState extends State<LogInPage> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 19,
                                   height: 1.5,
-                                  color: Color(0xFFFFFFFF),
+                                  color: const Color(0xFFFFFFFF),
                                 ),
                               ),
                             ),
@@ -233,7 +236,7 @@ class _LogInPageState extends State<LogInPage> {
                         ),
 
                         Container(
-                          margin: EdgeInsets.fromLTRB(28, 0, 28, 0),
+                          margin: const EdgeInsets.fromLTRB(28, 0, 28, 0),
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: RichText(
@@ -243,7 +246,7 @@ class _LogInPageState extends State<LogInPage> {
                                   'Lexend',
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                 ),
                                 children: [
                                   TextSpan(
@@ -253,7 +256,7 @@ class _LogInPageState extends State<LogInPage> {
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       height: 1.3,
-                                      color: Color(0xFF1886B5),
+                                      color: const Color(0xFF1886B5),
                                     ),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
@@ -280,6 +283,7 @@ class _LogInPageState extends State<LogInPage> {
             ),
           ),
         ),
+      )
       );
     }
   }

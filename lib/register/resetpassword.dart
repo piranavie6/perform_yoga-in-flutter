@@ -6,6 +6,8 @@ import 'dart:convert';
 import 'package:flutter/gestures.dart';
 
 class ResetPasswordPage extends StatefulWidget {
+  const ResetPasswordPage({super.key});
+
   @override
   _ResetPasswordPageState createState() => _ResetPasswordPageState();
 }
@@ -19,14 +21,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   Future<void> _resetPassword(String email, String newPassword) async {
     if (email.isEmpty || newPassword.isEmpty) {
       _resetPasswordScaffoldMessengerKey.currentState?.showSnackBar(
-        SnackBar(content: Text('Please fill in all fields')),
+        const SnackBar(content: Text('Please fill in all fields')),
       );
       return;
     }
 
     if (newPassword != _confirmPasswordController.text) {
       _resetPasswordScaffoldMessengerKey.currentState?.showSnackBar(
-        SnackBar(content: Text('Passwords do not match')),
+        const SnackBar(content: Text('Passwords do not match')),
       );
       return;
     }
@@ -45,18 +47,18 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         final responseData = json.decode(response.body);
         if (responseData['status'] == 'success') {
           _resetPasswordScaffoldMessengerKey.currentState?.showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('Password reset successful!'),
               backgroundColor: Colors.green, // Fix the background color
             ),
           );
           // Wait for a moment before navigating to login page
-          await Future.delayed(Duration(seconds: 2));
+          await Future.delayed(const Duration(seconds: 2));
 
           // Navigate to LogInPage after success (same as in register.dart)
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => LogInPage()),
+            MaterialPageRoute(builder: (context) => const LogInPage()),
           );
         } else {
           _resetPasswordScaffoldMessengerKey.currentState?.showSnackBar(
@@ -65,13 +67,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         }
       } else {
         _resetPasswordScaffoldMessengerKey.currentState?.showSnackBar(
-          SnackBar(content: Text('Failed to reset password. Please try again later.')),
+          const SnackBar(content: Text('Failed to reset password. Please try again later.')),
         );
       }
     } catch (e) {
       print('Error during HTTP request: $e');
       _resetPasswordScaffoldMessengerKey.currentState?.showSnackBar(
-        SnackBar(content: Text('Failed to reset password. Please check your internet connection.')),
+        const SnackBar(content: Text('Failed to reset password. Please check your internet connection.')),
       );
     }
   }
@@ -84,8 +86,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       home: Scaffold(
         body: Container(
           width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-          decoration: BoxDecoration(color: Color(0xFFFFFFFF)),
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          decoration: const BoxDecoration(color: Color(0xFFFFFFFF)),
           child: SingleChildScrollView(
             child: Stack(
               clipBehavior: Clip.none,
@@ -97,37 +99,37 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 1),
+                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 1),
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage('assets/images/layer_111.png'),
                             ),
                           ),
-                          child: Container(
+                          child: const SizedBox(
                             width: 378,
                             height: 226,
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(10.7, 0, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(10.7, 0, 0, 0),
                         child: Text(
                           'Reset Password',
                           style: GoogleFonts.getFont(
                             'Lexend',
                             fontWeight: FontWeight.w600,
                             fontSize: 20,
-                            color: Color(0xFF085364),
+                            color: const Color(0xFF085364),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(23, 0, 25, 18.2),
-                        padding: EdgeInsets.fromLTRB(11, 11, 13, 11.8),
+                        margin: const EdgeInsets.fromLTRB(23, 0, 25, 18.2),
+                        padding: const EdgeInsets.fromLTRB(11, 11, 13, 11.8),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xE5C0C0C0)),
+                          border: Border.all(color: const Color(0xE5C0C0C0)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: TextField(
@@ -140,16 +142,16 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                               'Lexend',
                               fontWeight: FontWeight.w300,
                               fontSize: 14,
-                              color: Color(0xFF333333),
+                              color: const Color(0xFF333333),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(23, 0, 25, 18.2),
-                        padding: EdgeInsets.fromLTRB(11, 11, 13, 11.8),
+                        margin: const EdgeInsets.fromLTRB(23, 0, 25, 18.2),
+                        padding: const EdgeInsets.fromLTRB(11, 11, 13, 11.8),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xE5C0C0C0)),
+                          border: Border.all(color: const Color(0xE5C0C0C0)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: TextField(
@@ -162,16 +164,16 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                               'Lexend',
                               fontWeight: FontWeight.w300,
                               fontSize: 14,
-                              color: Color(0xFF333333),
+                              color: const Color(0xFF333333),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(23, 0, 25, 18.2),
-                        padding: EdgeInsets.fromLTRB(11, 11, 13, 11.8),
+                        margin: const EdgeInsets.fromLTRB(23, 0, 25, 18.2),
+                        padding: const EdgeInsets.fromLTRB(11, 11, 13, 11.8),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xE5C0C0C0)),
+                          border: Border.all(color: const Color(0xE5C0C0C0)),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: TextField(
@@ -184,17 +186,17 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                               'Lexend',
                               fontWeight: FontWeight.w300,
                               fontSize: 14,
-                              color: Color(0xFF333333),
+                              color: const Color(0xFF333333),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(4, 0, 0, 14),
+                        margin: const EdgeInsets.fromLTRB(4, 0, 0, 14),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: Color(0xFF23B94D),
-                          boxShadow: [
+                          color: const Color(0xFF23B94D),
+                          boxShadow: const [
                             BoxShadow(
                               color: Color(0x0D000000),
                               offset: Offset(0, 1),
@@ -211,7 +213,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           child: Container(
                             alignment: Alignment.center,
                             width: 213,
-                            padding: EdgeInsets.fromLTRB(0, 6.5, 0.3, 6.5),
+                            padding: const EdgeInsets.fromLTRB(0, 6.5, 0.3, 6.5),
                             child: Text(
                               'Reset Password',
                               style: GoogleFonts.getFont(
@@ -219,14 +221,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 19,
                                 height: 1.5,
-                                color: Color(0xFFFFFFFF),
+                                color: const Color(0xFFFFFFFF),
                               ),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(24, 0, 24, 0),
+                        margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
                         child: Align(
                           alignment: Alignment.center,
                           child: Container(
@@ -237,7 +239,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                   'Lexend',
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
-                                  color: Color(0xFF000000),
+                                  color: const Color(0xFF000000),
                                 ),
                                 children: [
                                   TextSpan(
@@ -247,13 +249,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       height: 1.3,
-                                      color: Color(0xFF1886B5),
+                                      color: const Color(0xFF1886B5),
                                     ),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
                                         Navigator.pushReplacement(
                                           context,
-                                          MaterialPageRoute(builder: (context) => LogInPage()),
+                                          MaterialPageRoute(builder: (context) => const LogInPage()),
                                         );
                                       },
                                   ),
