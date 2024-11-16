@@ -238,6 +238,7 @@ import 'classification.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'verification.dart';
+import 'model2veri.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -329,9 +330,10 @@ class _CameraScreenState extends State<CameraScreen> {
         Navigator.push(
             context,
             MaterialPageRoute(
-           // builder: (context) => DetectionPage(imageFile: File(imagePath)), // Pass the image fil
-              builder: (context) => VerificationPage(imageFile: File(imagePath)), // Pass the image file
-
+           // builder: (context) => DetectionPage(imageFile: File(imagePath)), // Pass the image fil to clasify image
+            //  builder: (context) => VerificationPage(imageFile: File(imagePath)), // Pass the image file to extract angle
+              builder: (context) => PoseVerification(imageFile: File(imagePath)),  // Pass the image file here
+             // builder: (context) => MyWidget(),
             ),
         );
       });

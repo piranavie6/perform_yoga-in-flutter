@@ -32,8 +32,10 @@ class _LogInPageState extends State<LogInPage> {
 
     Future<void> _login(String email, String password) async {
       final response = await http.post(
-        Uri.parse('http://localhost/yoga_app/login.php'),//172.31.99.139
-        headers: {
+       // Uri.parse('http://localhost/yoga_app/login.php'),//work for chrome
+        Uri.parse('http://192.168.1.5/yoga_app/login.php'),//172.31.99.139
+
+      headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           'Accept': 'application/json',
         },

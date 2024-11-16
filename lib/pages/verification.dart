@@ -1,99 +1,82 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'alert_page_correct.dart';
-import 'alert_page_incorrect.dart';
-import 'package:tflite_flutter/tflite_flutter.dart';
-import 'package:image/image.dart' as img;
-import 'dart:math';
-import 'classification.dart';
+import 'package:http/http.dart' as http;
 
 class VerificationPage extends StatefulWidget {
-  const VerificationPage({Key? key, required this.imageFile}) : super(key: key);
   final File imageFile;
 
+  VerificationPage({required this.imageFile});
+
   @override
-  State<VerificationPage> createState() => _VerificationPageState();
+  _VerificationPageState createState() => _VerificationPageState();
 }
 
 class _VerificationPageState extends State<VerificationPage> {
-  List _output = [];
-  bool _isModel2Loaded = false;
-  late Interpreter _interpreter;
+  Map<String, dynamic>? poseAngles;
+  bool isLoading = true;
+
+  Future<void> sendImageToServer() async {
+    final uri = Uri.parse('http://192.168.1.32:5000/calculate_pose_angles'); // Update with the server's correct IP and port
+
+    var request = http.MultipartRequest('POST', uri);
+    request.files.add(await http.MultipartFile.fromPath('image', widget.imageFile.path));
+
+    try {
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        final responseData = await response.stream.bytesToString();
+        setState(() {
+          poseAngles = jsonDecode(responseData); // Parse the JSON response
+          isLoading = false; // Stop loading
+        });
+      } else {
+        print('Failed to receive angles. Status code: ${response.statusCode}');
+        setState(() {
+          isLoading = false; // Stop loading if there's an error
+        });
+      }
+    } catch (e) {
+      print('Error sending image: $e');
+      setState(() {
+        isLoading = false; // Stop loading if there's an error
+      });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-     loadModel2(); // Load the model when the widget is initialized
+    sendImageToServer(); // Send image to server when page is loaded
   }
-
-   Future<void> loadModel2() async {
-    try {
-      // Create a new interpreter for the model
-      _interpreter = await Interpreter.fromAsset('assets/verification.tflite');
-      print("Model loaded successfully.");
-      setState(() {
-        _isModel2Loaded = true;
-      });
-      //await _runModel(widget.imageFile); // Pass the image file to _runModel
-    } catch (e) {
-      print("Error loading model: $e");
-    }
-  }
-/*
-  Future<void> _runModel(File imageFile) async {
-    // Load the image and preprocess it
-    var image = img.decodeImage(imageFile.readAsBytesSync())!;
-    var inputImage = preprocessImage(image);
-    var output = List.filled(1, 0).reshape([1, 1]); // Assuming binary output
-
-    _interpreter.run(inputImage, output);
-
-    setState(() {
-      _output = output;
-    });
-
-    if (_output[0][0] == 0) {
-      // Navigate to the correct page if the output is 0
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const AlertPageCorrect()),
-      );
-    } else {
-      // Navigate to the incorrect page if the output is 1
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const AlertPageIncorrect()),
-      );
-    }
-  }
-
-  List preprocessImage(img.Image image) {
-    // Resize the image to match the model's input requirements
-    final resizedImage = img.copyResize(image, width: 224, height: 224);
-
-    // Normalize pixel values
-    return resizedImage
-        .getBytes()
-        .map((pixel) => pixel / 255.0)
-        .toList()
-        .reshape([1, 224, 224, 3]);
-  }*/
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pose Detection'),
-      ),
-      body: Center(
-        child: _isModel2Loaded
-            ? const Text('Model Loaded, Running Detection...')
-            : const SpinKitThreeBounce(
-          color: Colors.black,
-          size: 40,
-        ),
-      ),
+      appBar: AppBar(title: Text('Pose Verification')),
+      body: isLoading
+          ? Center(child: CircularProgressIndicator()) // Show loading indicator
+          : poseAngles != null
+          ? Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Pose Angles:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+
+          Text("Left Elbow: ${poseAngles?['left_elbow_angle']}°"),
+          Text("Left Hip: ${poseAngles?['left_hip_angle']}°"),
+          Text("Left Knee: ${poseAngles?['left_knee_angle']}°"),
+          Text("Left Shoulder: ${poseAngles?['left_shoulder_angle']}°"),
+
+          Text("Right Elbow: ${poseAngles?['right_elbow_angle']}°"),
+          Text("Right Hip: ${poseAngles?['right_hip_angle']}°"),
+          Text("Right Knee: ${poseAngles?['right_knee_angle']}°"),
+          Text("Right Shoulder: ${poseAngles?['right_shoulder_angle']}°"),
+
+          // Display additional angles here
+        ],
+      )
+          : Center(child: Text("Failed to retrieve pose angles.")),
     );
   }
 }

@@ -35,7 +35,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://172.31.99.136/yoga_app/reset_password.php'), // Update with your URL
+        Uri.parse('http://192.168.1.5/yoga_app/reset_password.php'), // Update with your URL
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: {
           'email': email,

@@ -152,7 +152,9 @@ flutter {
 
 dependencies {
     implementation 'org.tensorflow:tensorflow-lite:2.9.0'
-    implementation 'org.tensorflow:tensorflow-lite-support:0.3.1'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.3.1' //it worked but for load verifu i cmtt his
+  //  implementation 'org.tensorflow:tensorflow-lite-select-tf-ops:2.11.0'//new ad
+
 }
 
 

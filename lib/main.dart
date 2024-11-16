@@ -18,6 +18,7 @@ import 'pages/description_page_5.dart';
 import 'pages/alert_page_correct.dart';
 import 'pages/alert_page_incorrect.dart';
 import 'pages/classification.dart';
+import 'pages/not_our_pose.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       title: 'Flutter App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home', // Change this to the route you want to start with
+      initialRoute: '/welcome', // Change this to the route you want to start with
 
       routes: {
         '/welcome': (context) => const WelcomePage(),
@@ -53,7 +54,8 @@ class MyApp extends StatelessWidget {
         '/guidline5': (context) => const ViewquidanceAndOpenCamersSelectionPage5(),
         '/correct alert': (context) => AlertPage1Correct(),
         '/incorrect alert': (context) => AlertPage1Incorrect(),
-       // '/classification' :(context) => DetectionPage(),
+        '/notpose': (context) => NotMonitoredPosePage(),
+
 
 
 
