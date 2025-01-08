@@ -1,9 +1,11 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../register/config.dart';
+
 class DatabaseHelper {
   Future<List<Map<String, dynamic>>> fetchPoses() async {
-    final response = await http.get(Uri.parse('http://192.168.1.5/yoga_app/get_poses.php'));
+    final response = await http.get(Uri.parse('${AppConfig.baseUrl}/get_poses.php'));
 
     if (response.statusCode == 200) {
       final List<dynamic> poses = jsonDecode(response.body);

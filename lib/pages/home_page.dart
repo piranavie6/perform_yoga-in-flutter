@@ -9,12 +9,14 @@ import 'package:flutter_app/pages/viewquidance_and_open_camers_selection_page_5.
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import '../register/config.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
   // Function to insert pose data into the database
   Future<void> insertPoseData(String poseId, String poseName, String poseImage) async {
-    final String url = 'http://192.168.1.5/yoga_app/insert_pose.php'; // Your PHP API URL
+    final String url = '${AppConfig.baseUrl}/insert_pose.php'; // Your PHP API URL
 
     try {
       // Making a POST request

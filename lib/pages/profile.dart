@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import '../register/config.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -21,7 +22,8 @@ class _ProfileState extends State<Profile> {
   // Fetch user details from the PHP API
   Future<Map<String, dynamic>> fetchUserDetailsFromAPI() async {
     // Replace localhost with your computer's local IP address if using a physical device
-    final response = await http.get(Uri.parse('http://192.168.1.5/yoga_app/get_users.php'));
+    final response = await http.get(
+        Uri.parse('${AppConfig.baseUrl}/get_users.php'));
 
     if (response.statusCode == 200) {
       List<dynamic> users = json.decode(response.body);

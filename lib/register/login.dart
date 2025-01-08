@@ -6,11 +6,8 @@ import 'register_page.dart';
 import 'resetpassword.dart';
 import 'package:http/http.dart' as http; // For HTTP requests
 import 'dart:convert'; // For JSON decoding
-// ignore: duplicate_import
-
 import 'package:fluttertoast/fluttertoast.dart';
-
-
+import 'config.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -21,261 +18,224 @@ class LogInPage extends StatefulWidget {
 
 class _LogInPageState extends State<LogInPage> {
   // Controllers for managing input
-  //final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
-      final GlobalKey<ScaffoldMessengerState> _loginScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
-
-
-      final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<ScaffoldMessengerState> _loginScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-
-
-    Future<void> _login(String email, String password) async {
-      final response = await http.post(
-       // Uri.parse('http://localhost/yoga_app/login.php'),//work for chrome
-        Uri.parse('http://192.168.1.5/yoga_app/login.php'),//172.31.99.139
-
+  Future<void> _login(String email, String password) async {
+    final response = await http.post(
+      //Uri.parse('http://172.31.99.157/yoga_app/login.php'),
+      Uri.parse('${AppConfig.baseUrl}/login.php'),
       headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Accept': 'application/json',
-        },
-        body: {
-          'email': email,
-          'password': password,
-        },
-        encoding: Encoding.getByName('utf-8'),
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json',
+      },
+      body: {
+        'email': email,
+        'password': password,
+      },
+      encoding: Encoding.getByName('utf-8'),
+    );
+
+    final responseData = json.decode(response.body);
+    if (responseData['status'] == 'success') {
+      Fluttertoast.showToast(
+        msg: 'Login successful!',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
       );
-
-      final responseData = json.decode(response.body);
-      if (responseData['status'] == 'success') {
-        Fluttertoast.showToast(
-          msg: 'Login successful!',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
-        );
-      } else {
-        Fluttertoast.showToast(
-          msg: 'Login failed. Please try again.',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-        );
-      }
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: 'Login failed. Please try again.',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
     }
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: SingleChildScrollView(
-          child:Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFFFFFFFF),
-            ),
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-            child: SingleChildScrollView(
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  SizedBox(
-                    width: 378,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(5, 50, 20, 5),
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                'assets/images/layer_11.png',
-                              ),
-                            ),
-                          ),
-                          child: const SizedBox(
-                            width: 378,
-                            height: 226,
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 0.4, 3),
-                          child: Opacity(
-                            opacity: 0.3,
-                            child: Text(
-                              'Welcome Back!',
-                              style: GoogleFonts.getFont(
-                                'Inter',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 28,
-                                color: const Color(0xFF000000),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 12.7, 25),
-                          child: Text(
-                            'Log in',
-                            style: GoogleFonts.getFont(
-                              'Lexend',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 28,
-                              color: const Color(0xFF085364),
-                            ),
-                          ),
-                        ),
-                        // Email TextField with Controller
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(26, 0, 22, 18),
-                          padding: const EdgeInsets.all(11.5),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: const Color(0xE5C0C0C0)),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: TextField(
-                            controller: _emailController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Enter your email',
-                              hintStyle: GoogleFonts.getFont(
-                                'Lexend',
-                                fontWeight: FontWeight.w300,
-                                fontSize: 14,
-                                color: const Color(0xFF333333),
-                              ),
-                            ),
-                          ),
-                        ),
-                        // Password TextField with Controller
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(23, 0, 25, 18.2),
-                          padding: const EdgeInsets.fromLTRB(11, 11, 13, 11.8),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: const Color(0xE5C0C0C0)),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: TextField(
-                            controller: _passwordController,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Enter your password',
-                              hintStyle: GoogleFonts.getFont(
-                                'Lexend',
-                                fontWeight: FontWeight.w300,
-                                fontSize: 14,
-                                color: const Color(0xFF333333),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(25, 0, 25, 20),
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: GestureDetector(
-                              onTap: () {
-                                // Navigate to ResetPasswordPage
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) =>
-                                      const ResetPasswordPage()),
-                                );
-                              },
-                              child: Text(
-                                'Forgot password?',
-                                style: GoogleFonts.getFont(
-                                  'Lexend',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: const Color(0xFFD60E0E),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-// Login Button
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 14),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: const Color(0xFF23B94D),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color(0x0D000000),
-                                offset: Offset(0, 1),
-                                blurRadius: 1,
-                              ),
-                            ],
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              String email = _emailController.text;
-                              String password = _passwordController.text;
-                              _login(email, password);
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 213,
-                              padding: const EdgeInsets.fromLTRB(0, 6.5, 0.3, 6.5),
-                              child: Text(
-                                'Next',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.getFont(
-                                  'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 19,
-                                  height: 1.5,
-                                  color: const Color(0xFFFFFFFF),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+  }
 
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(28, 0, 28, 0),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: RichText(
-                              text: TextSpan(
-                                text: 'Don’t have an account ?  ',
-                                style: GoogleFonts.getFont(
-                                  'Lexend',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: const Color(0xFF000000),
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Register',
-                                    style: GoogleFonts.getFont(
-                                      'Lexend',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      height: 1.3,
-                                      color: const Color(0xFF1886B5),
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        // Handle registration action
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                RegisterPage(),
-                                          ),
-                                        );
-                                      },
-                                  ),
-                                ],
-                              ),
-                            ),
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              width: size.width,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: const BoxDecoration(
+                color: Color(0xFFFFFFFF),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Logo Section
+                  Container(
+                    margin: const EdgeInsets.only(top: 0, bottom: 20),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.contain,
+                        image: AssetImage('assets/images/layer_11.png'),
+                      ),
+                    ),
+                    width: size.width * 0.7, // Make it responsive
+                    height: size.height * 0.2,
+                  ),
+                  // Welcome Text
+                  Opacity(
+                    opacity: 0.3,
+                    child: Text(
+                      'Welcome Back!',
+                      style: GoogleFonts.getFont(
+                        'Inter',
+                        fontWeight: FontWeight.w600,
+                        fontSize: size.width * 0.07, // Adjust font size
+                        color: const Color(0xFF000000),
+                      ),
+                    ),
+                  ),
+                  // Log In Text
+                  Text(
+                    'Log in',
+                    style: GoogleFonts.getFont(
+                      'Lexend',
+                      fontWeight: FontWeight.w600,
+                      fontSize: size.width * 0.07, // Adjust font size
+                      color: const Color(0xFF085364),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // Email Input
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: const Color(0xE5C0C0C0)),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: TextField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Enter your email',
+                        hintStyle: GoogleFonts.getFont(
+                          'Lexend',
+                          fontWeight: FontWeight.w300,
+                          fontSize: size.width * 0.04,
+                          color: const Color(0xFF333333),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 18),
+                  // Password Input
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: const Color(0xE5C0C0C0)),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Enter your password',
+                        hintStyle: GoogleFonts.getFont(
+                          'Lexend',
+                          fontWeight: FontWeight.w300,
+                          fontSize: size.width * 0.04,
+                          color: const Color(0xFF333333),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  // Forgot Password
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ResetPasswordPage(),
                           ),
+                        );
+                      },
+                      child: Text(
+                        'Forgot password?',
+                        style: GoogleFonts.getFont(
+                          'Lexend',
+                          fontWeight: FontWeight.w400,
+                          fontSize: size.width * 0.035,
+                          color: const Color(0xFFD60E0E),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // Login Button
+                  InkWell(
+                    onTap: () {
+                      String email = _emailController.text;
+                      String password = _passwordController.text;
+                      _login(email, password);
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: size.width * 0.6, // Responsive width
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF23B94D),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Text(
+                        'Next',
+                        style: GoogleFonts.getFont(
+                          'Inter',
+                          fontWeight: FontWeight.w500,
+                          fontSize: size.width * 0.045,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // Register Section
+                  RichText(
+                    text: TextSpan(
+                      text: 'Don’t have an account?  ',
+                      style: GoogleFonts.getFont(
+                        'Lexend',
+                        fontWeight: FontWeight.w400,
+                        fontSize: size.width * 0.035,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Register',
+                          style: GoogleFonts.getFont(
+                            'Lexend',
+                            fontWeight: FontWeight.w400,
+                            fontSize: size.width * 0.035,
+                            color: const Color(0xFF1886B5),
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegisterPage(),
+                                ),
+                              );
+                            },
                         ),
                       ],
                     ),
@@ -285,7 +245,7 @@ class _LogInPageState extends State<LogInPage> {
             ),
           ),
         ),
-      )
-      );
-    }
+      ),
+    );
   }
+}

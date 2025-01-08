@@ -4,6 +4,7 @@ import 'login.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/gestures.dart';
+import 'config.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
@@ -35,7 +36,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.1.5/yoga_app/reset_password.php'), // Update with your URL
+        //Uri.parse('http://172.31.99.173/yoga_app/reset_password.php'), // Update with your URL
+        Uri.parse('${AppConfig.baseUrl}/reset_password.php'),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: {
           'email': email,

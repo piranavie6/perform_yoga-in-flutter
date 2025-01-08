@@ -8,66 +8,65 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( // Added MaterialApp widget
+    // Get the screen size
+    final size = MediaQuery.of(context).size;
+
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
             color: Color(0xFFFFFFFF),
           ),
-          child: Container(
-            padding: const EdgeInsets.fromLTRB(0, 43, 0, 46),
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: size.height * 0.05),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-
+                  // Image container
                   Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      'assets/images/international_yoga_day_011.png',
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/images/international_yoga_day_011.png'),
+                      ),
                     ),
+                    height: size.height * 0.35, // Adjusted height based on screen size
+                    width: size.width * 0.8, // Adjusted width
                   ),
-                ),
-                child: const SizedBox(
-                  width: 378,
-                  height: 275,
-                  // Removed image_4 asset
-                ),
-              ),
-            ),
-
+                  const SizedBox(height: 20),
+                  // Welcome Text
                   Container(
-                    margin: const EdgeInsets.fromLTRB(18, 0, 19.7, 10),//0.6, 0, 0, 11
+                    margin: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
                       'Welcome to PoseMaster!',
                       style: GoogleFonts.getFont(
                         'Inter',
                         fontWeight: FontWeight.w600,
-                        fontSize: 28,
+                        fontSize: size.width * 0.07, // Responsive font size
                         color: const Color(0xFFD00303),
                       ),
                     ),
                   ),
+                  // Tagline Text
                   Container(
-                    margin: const EdgeInsets.fromLTRB(31, 0, 31.8, 47),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
                       'The real time yoga pose monitoring system',
                       style: GoogleFonts.getFont(
                         'Inter',
                         fontWeight: FontWeight.w600,
-                        fontSize: 15,
+                        fontSize: size.width * 0.04, // Responsive font size
                         color: const Color(0xFF8A8484),
                       ),
                     ),
                   ),
+                  const SizedBox(height: 20),
+                  // Login Button
                   Container(
-                    margin: const EdgeInsets.fromLTRB(0, 0, 0, 26),
+                    width: size.width * 0.7,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: const Color(0xFF0EAC90),
@@ -84,7 +83,7 @@ class WelcomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LogInPage(), // Navigate to LogInPage
+                            builder: (context) => const LogInPage(),
                           ),
                         );
                       },
@@ -96,22 +95,24 @@ class WelcomePage extends StatelessWidget {
                         elevation: 5,
                       ),
                       child: Container(
-                      alignment: Alignment.center,
-                        width: 143,
-                        padding: const EdgeInsets.fromLTRB(0, 11, 0, 11),
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Text(
                           'LOG IN',
                           style: GoogleFonts.getFont(
                             'Jost',
                             fontWeight: FontWeight.w600,
-                            fontSize: 19,
+                            fontSize: size.width * 0.05, // Responsive font size
                             color: const Color(0xFFFFFFFF),
                           ),
                         ),
                       ),
                     ),
                   ),
+                  const SizedBox(height: 20),
+                  // Register Button
                   Container(
+                    width: size.width * 0.7,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: const Color(0xFF097B60),
@@ -128,7 +129,7 @@ class WelcomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegisterPage(), // Navigate to RegisterPage
+                            builder: (context) => RegisterPage(),
                           ),
                         );
                       },
@@ -141,14 +142,13 @@ class WelcomePage extends StatelessWidget {
                       ),
                       child: Container(
                         alignment: Alignment.center,
-                        width: 143,
-                        padding: const EdgeInsets.fromLTRB(0, 11, 0, 11),
+                        padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Text(
                           'REGISTER',
                           style: GoogleFonts.getFont(
                             'Jost',
                             fontWeight: FontWeight.w600,
-                            fontSize: 19,
+                            fontSize: size.width * 0.05, // Responsive font size
                             color: const Color(0xFFFFFFFF),
                           ),
                         ),
@@ -159,7 +159,6 @@ class WelcomePage extends StatelessWidget {
               ),
             ),
           ),
-
         ),
       ),
     );
