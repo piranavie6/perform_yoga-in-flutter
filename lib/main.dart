@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       title: 'Flutter App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home', // Change this to the route you want to start with
+      initialRoute: '/welcome', // Change this to the route you want to start with
 
       routes: {
         '/welcome': (context) => const WelcomePage(),

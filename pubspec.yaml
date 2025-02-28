@@ -31,7 +31,8 @@ dependencies:
   path: ^1.8.0
   http: ^1.2.2
   sqflite: ^2.0.0+4
-  audioplayers: ^0.20.1
+  audioplayers: ^6.1.0
+  shared_preferences: ^2.0.11
 
 
 
@@ -48,8 +49,6 @@ flutter:
     - assets/images/bb_1.png
     - assets/videos/goddess.mp4
     - assets/classification_reset_model.tflite
-    - assets/converted_model.tflite
-    - assets/labels.txt
     - assets/images/untitled_11.jpeg
     - assets/images/untitled_11.jpeg
     - assets/images/lovepik_green_flat_plant_yoga_banner_image_5629888_list_1.png
@@ -87,3 +86,5 @@ flutter:
     - assets/images/rectangle_18.jpeg
     - assets/images/f_489394725_oox_6_jg_48_u_2_k_0_fsk_4_rl_pczqk_u_7_qvu_2_bsu_1.jpeg
     - assets/images/lovepik_green_flat_plant_yoga_banner_image_5629888_list_1.png
+    - assets/audio/correct.wav
+    - assets/audio/incorrect.mp3

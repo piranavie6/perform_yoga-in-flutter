@@ -12,6 +12,8 @@ class DatabaseHelper {
       return poses.map((pose) => {
         'poseid': pose['poseid'],
         'posename': pose['posename'],
+        'Correctness_of_pose': pose['Correctness_of_pose'],
+        'Date': pose['Date'],
       }).toList();
     } else {
       throw Exception('Failed to load poses');

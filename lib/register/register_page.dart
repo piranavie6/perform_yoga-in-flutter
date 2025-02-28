@@ -122,7 +122,13 @@ class RegisterPage extends StatelessWidget {
       scaffoldMessengerKey: _scaffoldMessengerKey,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SafeArea(
+        body: Container(
+          width: size.width,
+          height: size.height,
+
+          decoration: const BoxDecoration(
+            color: Color(0xFFFFFFFF),
+          ),
           child: SingleChildScrollView(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),

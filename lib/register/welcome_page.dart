@@ -15,6 +15,9 @@ class WelcomePage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
+          width: size.width,
+          height: size.height,
+
           decoration: const BoxDecoration(
             color: Color(0xFFFFFFFF),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'DatabaseHelper.dart';
+import 'DatabaseHelper.dart';  // Ensure this file is imported correctly
 
 class PoseHistoryPage extends StatefulWidget {
   @override
@@ -77,7 +77,7 @@ class _PoseHistoryPageState extends State<PoseHistoryPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Pose ID',
+                      'Posename',
                       style: GoogleFonts.inter(
                         fontWeight: FontWeight.w600,
                         fontSize: 12,
@@ -87,7 +87,17 @@ class _PoseHistoryPageState extends State<PoseHistoryPage> {
                       ),
                     ),
                     Text(
-                      'Pose name',
+                      'Correctness of Pose',
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        height: 1.4,
+                        letterSpacing: -0.2,
+                        color: Color(0xFF000000),
+                      ),
+                    ),
+                    Text(
+                      'Date',
                       style: GoogleFonts.inter(
                         fontWeight: FontWeight.w600,
                         fontSize: 12,
@@ -122,7 +132,7 @@ class _PoseHistoryPageState extends State<PoseHistoryPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  pose['poseid'], // Display Pose ID
+                                  pose['posename'] ?? 'Unknown Pose',  // Safe access
                                   style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 10,
@@ -132,7 +142,17 @@ class _PoseHistoryPageState extends State<PoseHistoryPage> {
                                   ),
                                 ),
                                 Text(
-                                  pose['posename'], // Display Pose Name
+                                  pose['Correctness_of_pose'] ?? 'Unknown Status', // Safe access
+                                  style: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 10,
+                                    height: 1.4,
+                                    letterSpacing: -0.2,
+                                    color: Color(0xFF000000),
+                                  ),
+                                ),
+                                Text(
+                                  pose['Date'] ?? 'Unknown Status', // Safe access
                                   style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 10,

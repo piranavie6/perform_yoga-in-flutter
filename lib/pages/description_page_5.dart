@@ -155,6 +155,7 @@ class _DescriptionPage1State extends State<DescriptionPage5> {
   GestureDetector _buildNextButton() {
     return GestureDetector(
       onTap: () {
+        _controller.pause(); // Pause the video before navigating
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => const CameraScreen(), // Replace with your actual camera page widget

@@ -8,36 +8,9 @@ import 'package:flutter_app/pages/viewquidance_and_open_camers_selection_page_4.
 import 'package:flutter_app/pages/viewquidance_and_open_camers_selection_page_5.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-import '../register/config.dart';
-
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-  // Function to insert pose data into the database
-  Future<void> insertPoseData(String poseId, String poseName, String poseImage) async {
-    final String url = '${AppConfig.baseUrl}/insert_pose.php'; // Your PHP API URL
-
-    try {
-      // Making a POST request
-      final response = await http.post(
-        Uri.parse(url),
-        body: {
-          'poseid': poseId,
-          'posename': poseName,
-        },
-      );
-
-      // Check the response from the server
-      if (response.statusCode == 200) {
-        print("Pose data inserted successfully: ${response.body}");
-      } else {
-        print("Failed to insert pose data.");
-      }
-    } catch (e) {
-      print("Error: $e");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +63,6 @@ class HomePage extends StatelessWidget {
               );
             },
           )
-
         ],
       ),
       body: Container(
@@ -101,7 +73,6 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // The rest of your code remains unchanged
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
@@ -238,7 +209,6 @@ class HomePage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      insertPoseData('1', 'Goddess', 'component_5.png');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage1()),
@@ -260,7 +230,6 @@ class HomePage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      insertPoseData('2', 'Worriors', 'component_5.png');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage2()),
@@ -282,7 +251,6 @@ class HomePage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      insertPoseData('3', 'Downdog', 'component_5.png');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage3()),
@@ -304,7 +272,6 @@ class HomePage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      insertPoseData('4', 'Plank', 'component_5.png');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage4()),
@@ -326,7 +293,6 @@ class HomePage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      insertPoseData('5', 'Tree', 'component_5.png');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ViewquidanceAndOpenCamersSelectionPage5()),

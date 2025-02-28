@@ -224,6 +224,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'home_page.dart';
+import 'package:audioplayers/audioplayers.dart'; // Import the audioplayers package
 
 class AlertPage1Incorrect extends StatefulWidget {
   final File imageFile;
@@ -234,14 +235,26 @@ class AlertPage1Incorrect extends StatefulWidget {
   _AlertPage1IncorrectState createState() => _AlertPage1IncorrectState();
 }
 
+
 class _AlertPage1IncorrectState extends State<AlertPage1Incorrect> {
   File? markedImage; // To store the marked image
   bool isLoading = true;
+  late AudioPlayer _audioPlayer; // Instance of AudioPlayer
 
   @override
   void initState() {
     super.initState();
+    _audioPlayer = AudioPlayer();
+    _playSound();
     _getMarkedImage();
+  }
+
+  Future<void> _playSound() async {
+    try {
+      await _audioPlayer.play(AssetSource('audio/incorrect.mp3')); // Update with your audio file path
+    } catch (e) {
+      print('Error playing sound: $e');
+    }
   }
 
   Future<void> _getMarkedImage() async {
@@ -253,7 +266,7 @@ class _AlertPage1IncorrectState extends State<AlertPage1Incorrect> {
   }
 
   Future<File?> fetchMarkedImage(File imageFile) async {
-    final uri = Uri.parse('http://172.31.99.137:5000/mark_pose_from_image'); // Your Flask server URL
+    final uri = Uri.parse('http://192.168.8.113:5000/mark_pose_from_image'); // Your Flask server URL
     final request = http.MultipartRequest('POST', uri);
 
     request.files.add(await http.MultipartFile.fromPath('image', imageFile.path));

@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http; // For HTTP requests
 import 'dart:convert'; // For JSON decoding
 import 'package:fluttertoast/fluttertoast.dart';
 import 'config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -39,6 +40,8 @@ class _LogInPageState extends State<LogInPage> {
 
     final responseData = json.decode(response.body);
     if (responseData['status'] == 'success') {
+      // Store the email after successful login
+      storeLastLoginEmail(email);
       Fluttertoast.showToast(
         msg: 'Login successful!',
         toastLength: Toast.LENGTH_SHORT,
@@ -57,6 +60,12 @@ class _LogInPageState extends State<LogInPage> {
     }
   }
 
+  Future<void> storeLastLoginEmail(String email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('lastLoginEmail', email); // Save the email in SharedPreferences
+    print('Email saved: $email');  // Debugging line to check if the email is saved
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -64,7 +73,13 @@ class _LogInPageState extends State<LogInPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SafeArea(
+        body: Container(
+          width: size.width,
+          height: size.height,
+
+          decoration: const BoxDecoration(
+            color: Color(0xFFFFFFFF),
+          ),
           child: SingleChildScrollView(
             child: Container(
               width: size.width,
@@ -78,7 +93,7 @@ class _LogInPageState extends State<LogInPage> {
                 children: [
                   // Logo Section
                   Container(
-                    margin: const EdgeInsets.only(top: 0, bottom: 20),
+                    margin: const EdgeInsets.only(top: 80, bottom: 20),
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.contain,

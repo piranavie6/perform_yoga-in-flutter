@@ -157,4 +157,14 @@ dependencies {
 
 }
 
+configurations {
+    all {
+        exclude group: 'org.tensorflow', module: 'tensorflow-lite-api'
+    }
+}
+
+
+
+
+
 
